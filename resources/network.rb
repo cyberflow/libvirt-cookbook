@@ -10,4 +10,5 @@ attribute :netmask, :kind_of => String
 attribute :gateway, :kind_of => String
 attribute :forward, :kind_of => String
 attribute :dhcp_range, :kind_of => Hash
+attribute :virtualport, :kind_of => String
 attribute :uri, :kind_of => String, :default => 'qemu:///system'
