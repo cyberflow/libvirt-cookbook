@@ -7,11 +7,11 @@
 <% end %>
 <% if @gateway && @netmask %>
   <ip address="<%= @gateway %>" netmask="<%= @netmask %>">
-<% end %>
 <% if @dhcp %>
     <dhcp>
       <range start="<%= @dhcp[:start] %>" end="<%= @dhcp[:end] %>" />
     </dhcp>
 <% end %>
   </ip>
+<% end %>
 </network>
