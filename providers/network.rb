@@ -21,6 +21,7 @@ action :define do
         :forward => new_resource.forward,
         :virtualport => new_resource.virtualport,
         :dhcp    => new_resource.dhcp_range,
+        :boot    => new_resource.boot,
         :uuid    => ::UUIDTools::UUID.random_create
       )
       action :nothing
