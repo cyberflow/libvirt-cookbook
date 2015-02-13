@@ -41,7 +41,7 @@ def device_exist?
   cmdstr << "|grep '#{new_resource.mac}'" if new_resource.mac
   cmdstr << "|grep #{new_resource.virtualport}" if new_resource.virtualport
   Chef::Log.debug(cmdstr)
-  cmd = Mixlib::ShellOut.new(cmdStr)
+  cmd = Mixlib::ShellOut.new(cmdstr)
   cmd.run_command
   begin
     cmd.error!
