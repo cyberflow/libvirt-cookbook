@@ -31,6 +31,24 @@ end
 
 private
 
+def device_exist?(name)
+  cmdstr = "virsh domiflist #{new_resource.domain}"
+  cmdstr << "|grep #{new_resource.type}" if new_resource.type
+  cmdstr << "|grep #{new_resource.source}" if new_resource.source
+  cmdstr << "|grep #{new_resource.model}" if new_resource.model
+  cmdstr << "|grep '#{new_resource.mac}'" if new_resource.mac
+  cmdstr << "|grep #{new_resource.virtualport}" if new_resource.virtualport
+  Chef::Log.debug(cmd)
+  cmd = Mixlib::ShellOut.new(cmdStr)
+  cmd.run_command
+  begin
+    cmd.error!
+    false
+  rescue
+    true
+  end
+end
+
 def load_domain
   @libvirt.lookup_domain_by_name(new_resource.domain)
 end
