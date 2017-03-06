@@ -9,6 +9,10 @@
   <virtualport type="<%= @virtualport %>"/>
 <% end %>
 <% if @gateway && @netmask %>
+<%end %>
+<% if @domain %>
+  <domain name="<%= @domain %>"/>
+<%end %>
   <ip address="<%= @gateway %>" netmask="<%= @netmask %>">
 <% if @dhcp %>
     <dhcp>

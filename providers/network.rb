@@ -18,6 +18,7 @@ action :define do
         :gateway => new_resource.gateway,
         :forward => new_resource.forward,
         :virtualport => new_resource.virtualport,
+        :domain  => new_resource.domain,
         :dhcp    => new_resource.dhcp_range,
         :uuid    => ::UUIDTools::UUID.random_create
       )
