@@ -7,10 +7,11 @@ Usage
 =====
 
     libvirt_network 'fake_network' do
-      netmask    '255.255.0.0'
-      gateway    '192.168.42.1'
-      bridge     'fakebr'
-      forward    'nat'
+      netmask     '255.255.0.0'
+      gateway     '192.168.42.1'
+      bridge      'fakebr'
+      forward     'nat'
+      virtualport 'openvswitch'
       dhcp_range :start => '192.168.42.100', :end => '192.168.42.200'
 
       action [:define, :create, :autostart]

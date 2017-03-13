@@ -1,4 +1,4 @@
-%w(libvirt-bin libvirt-dev).each do |name|
+%w(libvirt-bin libvirt-dev build-essential).each do |name|
   package name do
     action :nothing
   end.run_action(:install)
@@ -12,3 +12,4 @@ end
 
 $LOAD_PATH.delete("/usr/bin/../lib") # scumbag LOAD_PATH: https://github.com/opscode/chef/blob/master/bin/chef-solo#L22
 require 'libvirt'
+require 'uuidtools'

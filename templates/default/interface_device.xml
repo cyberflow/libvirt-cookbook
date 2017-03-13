@@ -1,0 +1,14 @@
+<interface type='<%= @type %>'>
+  <% if @mac %>
+  <mac address='<%= @mac %>'/>
+  <% end %>
+  <% if @source %>
+  <source bridge='<%= @source %>'/>
+  <% end %>
+  <% if @virtualport %>
+  <virtualport type='<%= @virtualport %>'/>
+  <% end %>
+  <% if @model %>
+  <model type='<%= @model %>'/>
+  <% end %>
+</interface>

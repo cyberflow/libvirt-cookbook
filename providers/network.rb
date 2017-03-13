@@ -1,5 +1,3 @@
-require 'uuidtools'
-
 def load_current_resource
   @current_resource = Chef::Resource::LibvirtNetwork.new(new_resource.name)
   @libvirt = ::Libvirt.open(new_resource.uri)
@@ -19,6 +17,7 @@ action :define do
         :netmask => new_resource.netmask,
         :gateway => new_resource.gateway,
         :forward => new_resource.forward,
+        :virtualport => new_resource.virtualport,
         :domain  => new_resource.domain,
         :dhcp    => new_resource.dhcp_range,
         :uuid    => ::UUIDTools::UUID.random_create
