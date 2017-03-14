@@ -6,7 +6,7 @@ def initialize(*args)
 end
 
 attribute :name, :kind_of => String, :name_attribute => true
-attribute :type, :kind_of => String, :required => true, :default => 'ceph'
+attribute :type, :kind_of => String, :default => 'ceph'
 attribute :ephemeral, :kind_of => String, :default => 'no'
 attribute :private, :kind_of => String, :default => 'no'
 attribute :uuid, :kind_of => String
