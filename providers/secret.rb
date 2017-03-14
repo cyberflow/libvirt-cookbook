@@ -1,6 +1,3 @@
-require 'libvirt'
-require 'uuidtools'
-
 def load_current_resource
   @current_resource = Chef::Resource::LibvirtSecret.new(new_resource.name)
   @libvirt = ::Libvirt.open(new_resource.uri)
