@@ -1,4 +1,9 @@
 def load_current_resource
+  chef_gem 'ruby-libvirt' do
+    options '-- --with-libvirt-include=/usr/include/libvirt --with-libvirt-lib=/usr/lib'
+    action :install
+  end
+  require 'libvirt'
   @current_resource = Chef::Resource::LibvirtSecret.new(new_resource.name)
   @libvirt = ::Libvirt.open(new_resource.uri)
   @current_resource
@@ -6,6 +11,7 @@ end
 
 action :define do
   require 'base64'
+  require 'uuidtools'
   uuid = new_resource.uuid || ::UUIDTools::UUID.random_create
   begin
     new_secret_xml = <<-EOF
