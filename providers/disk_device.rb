@@ -15,7 +15,8 @@ action :attach do
         :type   => new_resource.type,
         :bus    => new_resource.bus,
         :source => new_resource.source,
-        :target => new_resource.target
+        :target => new_resource.target,
+        :cache  => new_resource.cache
       )
       action :nothing
     end
