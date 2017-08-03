@@ -5,7 +5,7 @@ def load_current_resource
   end
   require 'libvirt'
   @current_resource = Chef::Resource::LibvirtSecret.new(new_resource.name)
-  @libvirt = ::Libvirt.open(new_resource.uri)
+  @@libvirt ||= ::Libvirt.open(new_resource.uri)
   @current_resource
 end
 

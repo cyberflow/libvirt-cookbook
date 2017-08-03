@@ -2,7 +2,7 @@ require 'uuidtools'
 
 def load_current_resource
   @current_resource = Chef::Resource::LibvirtDomain.new(new_resource.name)
-  @libvirt = ::Libvirt.open(new_resource.uri)
+  @@libvirt ||= ::Libvirt.open(new_resource.uri)
   @domain  = load_domain rescue nil
   @current_resource
 end
@@ -28,7 +28,7 @@ action :define do
     end
     t.run_action(:create)
 
-    @libvirt.define_domain_xml(::File.read(domain_xml.path))
+    @@libvirt.define_domain_xml(::File.read(domain_xml.path))
     @domain = load_domain
     new_resource.updated_by_last_action(true)
   end
@@ -71,7 +71,7 @@ def to_bytes(value)
 end
 
 def load_domain
-  @libvirt.lookup_domain_by_name(new_resource.name)
+  @@libvirt.lookup_domain_by_name(new_resource.name)
 end
 
 def require_defined_domain

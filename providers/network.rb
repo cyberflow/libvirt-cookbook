@@ -1,6 +1,6 @@
 def load_current_resource
   @current_resource = Chef::Resource::LibvirtNetwork.new(new_resource.name)
-  @libvirt = ::Libvirt.open(new_resource.uri)
+  @@libvirt ||= ::Libvirt.open(new_resource.uri)
   @network = load_network rescue nil
   @current_resource
 end
@@ -26,7 +26,7 @@ action :define do
     end
     t.run_action(:create)
 
-    @libvirt.define_network_xml(::File.read(network_xml.path))
+    @@libvirt.define_network_xml(::File.read(network_xml.path))
     @network = load_network
     new_resource.updated_by_last_action(true)
   end
@@ -51,7 +51,7 @@ end
 private
 
 def load_network
-  @libvirt.lookup_network_by_name(new_resource.name)
+  @@libvirt.lookup_network_by_name(new_resource.name)
 end
 
 def require_defined_network
