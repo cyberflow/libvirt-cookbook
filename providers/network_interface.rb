@@ -1,6 +1,6 @@
 def load_current_resource
   @current_resource = Chef::Resource::LibvirtNetworkInterface.new(new_resource.name)
-  @@libvirt ||= ::Libvirt.open(new_resource.uri)
+  @libvirt = Libvirt_sock.new(new_resource.uri).sock
   @current_resource
 end
 
@@ -32,5 +32,5 @@ end
 private
 
 def load_domain
-  @@libvirt.lookup_domain_by_name(new_resource.domain)
+  @libvirt.lookup_domain_by_name(new_resource.domain)
 end
