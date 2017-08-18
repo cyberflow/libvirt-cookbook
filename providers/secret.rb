@@ -5,7 +5,7 @@ def load_current_resource
   end
   require 'libvirt'
   @current_resource = Chef::Resource::LibvirtSecret.new(new_resource.name)
-  @@libvirt ||= ::Libvirt.open(new_resource.uri)
+  @libvirt = Libvirt_sock.new(new_resource.uri).sock
   @current_resource
 end
 
@@ -22,8 +22,7 @@ action :define do
       </usage>
     </secret>
     EOF
-    conn = Libvirt::open(new_resource.uri)
-    secret = conn.define_secret_xml(new_secret_xml)
+    secret = @libvirt.define_secret_xml(new_secret_xml)
     secret.value = Base64.decode64(new_resource.value)
   rescue Libvirt::RetrieveError
     raise "ERROR"
