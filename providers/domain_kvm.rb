@@ -22,6 +22,8 @@ action :define do
         :vcpu   => new_resource.vcpu,
         :arch   => libvirt_arch,
         :boot   => new_resource.boot,
+        :type   => new_resource.type,
+        :emulator   => new_resource.emulator,
         :uuid   => ::UUIDTools::UUID.random_create
       )
       action :nothing
