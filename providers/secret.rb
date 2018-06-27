@@ -1,4 +1,5 @@
 def load_current_resource
+  include_recipe 'build-essential'
   chef_gem 'ruby-libvirt' do
     options '-- --with-libvirt-include=/usr/include/libvirt --with-libvirt-lib=/usr/lib'
     action :install
