@@ -1,6 +1,6 @@
 <domain type='<%= @type %>' >
   <name><%= @name %></name>
-  <currentMemory><%= @memory %></currentMemory>
+  <currentMemory><%= @currentMemory %></currentMemory>
   <memory><%= @memory %></memory>
   <vcpu><%= @vcpu %></vcpu>
   <uuid><%= @uuid %></uuid>
