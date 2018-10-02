@@ -9,6 +9,7 @@ end
 
 action :define do
   unless domain_defined?
+    currentMemory_in_bytes = new_resource.currentMemory.nil? ? to_bytes(new_resource.memory) : to_bytes(new_resource.currentMemory)
     memory_in_bytes = to_bytes(new_resource.memory)
     libvirt_arch    = to_arch(new_resource.arch)
 
@@ -18,6 +19,7 @@ action :define do
       source   "kvm_domain.xml"
       variables(
         :name   => new_resource.name,
+        :currentMemory => currentMemory_in_bytes,
         :memory => memory_in_bytes,
         :vcpu   => new_resource.vcpu,
         :arch   => libvirt_arch,
